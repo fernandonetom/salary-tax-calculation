@@ -18,6 +18,7 @@ const Loading = () => (
 );
 export const DolarView = ({
   className,
+  role,
 }: React.HtmlHTMLAttributes<HTMLDivElement>) => {
   const {
     value: dolarValue,
@@ -30,6 +31,7 @@ export const DolarView = ({
   return (
     <div
       className={cn("flex min-w-96 justify-between items-center", className)}
+      role={role}
     >
       {isLoading && <Loading />}
       {!isLoading && !error && (
