@@ -1,9 +1,19 @@
-import { TModel } from "@/data/model";
+import { z } from "zod";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-type TModelStore = TModel & {
-  setModel: (values: TModel) => void;
+import { salarySchema } from "@/domain/models/salary";
+import { taxSchema } from "@/domain/models/tax";
+
+export const salariesModelSchema = z.object({
+  salaries: z.array(salarySchema),
+  taxes: z.array(taxSchema),
+});
+
+export type TSalariesModel = z.infer<typeof salariesModelSchema>;
+
+type TModelStore = TSalariesModel & {
+  setModel: (values: TSalariesModel) => void;
 };
 
 export const useModelStore = create<TModelStore>()(

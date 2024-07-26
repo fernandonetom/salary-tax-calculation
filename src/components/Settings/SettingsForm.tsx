@@ -13,7 +13,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { TModel, modelSchema } from "@/data/model";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {
   Select,
@@ -25,17 +24,21 @@ import {
 import { SaveIcon } from "@/components/icons/SaveIcon";
 import { AddIcon } from "@/components/icons/AddIcon";
 import { RemoveIcon } from "@/components/icons/RemoveIcon";
-import { useModelStore } from "@/data/store";
 import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
+import {
+  TSalariesModel,
+  salariesModelSchema,
+  useModelStore,
+} from "@/store/store";
 
 export const SettingsForm = () => {
   const { salaries, taxes, setModel } = useModelStore();
   const { toast } = useToast();
   const router = useRouter();
 
-  const form = useForm<TModel>({
-    resolver: zodResolver(modelSchema),
+  const form = useForm<TSalariesModel>({
+    resolver: zodResolver(salariesModelSchema),
     defaultValues: {
       salaries,
       taxes,
@@ -52,7 +55,7 @@ export const SettingsForm = () => {
     control: form.control,
   });
 
-  function onSubmit(values: TModel) {
+  function onSubmit(values: TSalariesModel) {
     setModel(values);
 
     toast({

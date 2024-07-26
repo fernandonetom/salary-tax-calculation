@@ -2,9 +2,9 @@
 import { AlertIcon } from "@/components/icons/AlertIcon";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useTaxCalculator } from "@/data/customHooks/useTaxCalculator";
-import { useModelStore } from "@/data/store";
+import { useTaxCalculator } from "@/customHooks/useTaxCalculator";
 import { toBrazilianCurrency, cn } from "@/lib/utils";
+import { useModelStore } from "@/store/store";
 import Link from "next/link";
 
 const Loading = () => (
