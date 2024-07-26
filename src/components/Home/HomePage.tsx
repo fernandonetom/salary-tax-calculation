@@ -14,13 +14,8 @@ export const HomePage = () => {
         </Link>
       </Header>
       <section className="flex-1 flex items-center justify-center flex-col space-y-10">
-        <CalculationResult />
-
-        {/* <div className="min-w-96 flex items-center justify-between">
-          <Button variant="outline">Details</Button>
-        </div> */}
-
-        <DolarView />
+        <CalculationResult role="calculation-result" />
+        <DolarView role="dolar-view" />
       </section>
     </Content>
   );

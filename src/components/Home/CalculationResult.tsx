@@ -20,12 +20,13 @@ const Loading = () => (
 
 export const CalculationResult = ({
   className,
+  role,
 }: React.HtmlHTMLAttributes<HTMLDivElement>) => {
   const { salaries, taxes } = useModelStore();
   const { isLoading, value: usdValue, error } = useDolarValue();
 
   return (
-    <div className={cn("min-w-96", className)}>
+    <div className={cn("min-w-96", className)} role={role}>
       {(salaries.length === 0 || taxes.length === 0) && (
         <Alert className="max-w-96 flex items-center justify-center space-x-4">
           <AlertIcon className="size-10 -mt-2" />
