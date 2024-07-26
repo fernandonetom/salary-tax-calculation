@@ -10,7 +10,7 @@ export type TDolarValue = {
   error: Error | null;
 };
 
-export const useDolarValue = (): TDolarValue => {
+export const useDollarValue = (): TDolarValue => {
   const { data, isFetching, refetch, error } = useQuery({
     queryKey: ["dolar"],
     queryFn: async () => {
