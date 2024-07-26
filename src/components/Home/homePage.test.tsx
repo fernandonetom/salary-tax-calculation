@@ -2,13 +2,13 @@ import "@testing-library/jest-dom";
 
 import { render, screen } from "@testing-library/react";
 import { HomePage } from "@/components/Home/HomePage";
-import { useDolarValue } from "@/customHooks/useDolarValue";
+import { useDollarValue } from "@/customHooks/useDollarValue";
 
-jest.mock("../../customHooks/useDolarValue");
+jest.mock("../../customHooks/useDollarValue");
 
 describe("HomePage", () => {
   beforeEach(() => {
-    (useDolarValue as jest.Mock).mockReturnValue(() => ({
+    (useDollarValue as jest.Mock).mockReturnValue(() => ({
       isLoading: false,
       value: 5,
       lastUpdated: new Date(),
@@ -29,9 +29,9 @@ describe("HomePage", () => {
     expect(calculationResult).toBeInTheDocument();
   });
 
-  test("renders the DolarView component", () => {
+  test("renders the DollarView component", () => {
     render(<HomePage />);
-    const dolarView = screen.getByRole("dolar-view");
-    expect(dolarView).toBeInTheDocument();
+    const DollarView = screen.getByRole("dolar-view");
+    expect(DollarView).toBeInTheDocument();
   });
 });

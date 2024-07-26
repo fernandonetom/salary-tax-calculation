@@ -1,5 +1,5 @@
 import { CalculationResult } from "@/components/Home/CalculationResult";
-import { DolarView } from "@/components/Home/DolarView";
+import { DollarView } from "@/components/Home/DollarView";
 import { Content } from "@/components/ui/Content";
 import { Header } from "@/components/ui/Header";
 import { Button } from "@/components/ui/button";
@@ -15,7 +15,7 @@ export const HomePage = () => {
       </Header>
       <section className="flex-1 flex items-center justify-center flex-col space-y-10">
         <CalculationResult role="calculation-result" />
-        <DolarView role="dolar-view" />
+        <DollarView role="dolar-view" />
       </section>
     </Content>
   );
