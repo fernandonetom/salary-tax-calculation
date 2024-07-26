@@ -1,5 +1,7 @@
 "use client";
+import { AlertIcon } from "@/components/icons/AlertIcon";
 import { RefreshIcon } from "@/components/icons/RefreshIcon";
+import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useDolarValue } from "@/customHooks/useDolarValue";
@@ -22,6 +24,7 @@ export const DolarView = ({
     lastUpdated,
     refetch,
     isLoading,
+    error,
   } = useDolarValue();
 
   return (
@@ -29,7 +32,7 @@ export const DolarView = ({
       className={cn("flex min-w-96 justify-between items-center", className)}
     >
       {isLoading && <Loading />}
-      {!isLoading && (
+      {!isLoading && !error && (
         <>
           <div>
             <p>{!isLoading && dolarValue && toBrazilianCurrency(dolarValue)}</p>
@@ -46,6 +49,20 @@ export const DolarView = ({
             <RefreshIcon />
           </Button>
         </>
+      )}
+      {!isLoading && error && (
+        <Alert className="max-w-96 flex items-center justify-center space-x-4">
+          <AlertIcon className="size-10 -mt-2" />
+          <div>
+            <AlertTitle>Error loading the dollar value.</AlertTitle>
+            <AlertDescription>
+              Error message: {error.message}
+              <Button variant="ghost" onClick={() => refetch()}>
+                Try again
+              </Button>
+            </AlertDescription>
+          </div>
+        </Alert>
       )}
     </div>
   );
