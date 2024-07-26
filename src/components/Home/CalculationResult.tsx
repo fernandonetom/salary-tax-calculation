@@ -2,7 +2,8 @@
 import { AlertIcon } from "@/components/icons/AlertIcon";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useTaxCalculator } from "@/customHooks/useTaxCalculator";
+import { useDolarValue } from "@/customHooks/useDolarValue";
+import { SalaryCalculator } from "@/domain/services/salaryCalculator";
 import { toBrazilianCurrency, cn } from "@/lib/utils";
 import { useModelStore } from "@/store/store";
 import Link from "next/link";
@@ -21,7 +22,7 @@ export const CalculationResult = ({
   className,
 }: React.HtmlHTMLAttributes<HTMLDivElement>) => {
   const { salaries, taxes } = useModelStore();
-  const { value: salaryCalculation } = useTaxCalculator();
+  const { isLoading, value: usdValue, error } = useDolarValue();
 
   return (
     <div className={cn("min-w-96", className)}>
@@ -38,13 +39,21 @@ export const CalculationResult = ({
         </Alert>
       )}
 
-      {!salaryCalculation && <Loading />}
+      {isLoading && <Loading />}
 
-      {salaryCalculation && salaries.length > 0 && taxes.length > 0 && (
+      {!isLoading && !error && salaries.length > 0 && taxes.length > 0 && (
         <>
           <p>You will receive:</p>
           <p className="text-6xl text-right">
-            {toBrazilianCurrency(salaryCalculation)}
+            {toBrazilianCurrency(
+              SalaryCalculator.calculate({
+                salaries,
+                taxes,
+                conversionRate: {
+                  USD: usdValue!,
+                },
+              })
+            )}
           </p>
           <p className="text-right">After all taxes</p>
         </>

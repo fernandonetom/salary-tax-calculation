@@ -7,10 +7,11 @@ export type TDolarValue = {
   value?: number;
   lastUpdated?: Date;
   refetch: () => void;
+  error: Error | null;
 };
 
 export const useDolarValue = (): TDolarValue => {
-  const { data, isFetching, refetch } = useQuery({
+  const { data, isFetching, refetch, error } = useQuery({
     queryKey: ["dolar"],
     queryFn: async () => {
       const response = await fetch(
@@ -29,5 +30,6 @@ export const useDolarValue = (): TDolarValue => {
     lastUpdated: data?.lastUpdated,
     isLoading: isFetching,
     refetch,
+    error,
   };
 };
