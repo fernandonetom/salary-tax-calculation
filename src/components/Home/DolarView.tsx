@@ -2,7 +2,7 @@
 import { RefreshIcon } from "@/components/icons/RefreshIcon";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useDolarValue } from "@/data/customHooks/useDolarValue";
+import { useDolarValue } from "@/customHooks/useDolarValue";
 import { toBrazilianCurrency, cn } from "@/lib/utils";
 
 const Loading = () => (

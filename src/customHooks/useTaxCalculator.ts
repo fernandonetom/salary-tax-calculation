@@ -1,5 +1,5 @@
-import { useModelStore } from "@/data/store";
-import { useDolarValue } from "@/data/customHooks/useDolarValue";
+import { useDolarValue } from "@/customHooks/useDolarValue";
+import { useModelStore } from "@/store/store";
 import { useCallback } from "react";
 
 export const useTaxCalculator = () => {
