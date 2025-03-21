@@ -15,12 +15,12 @@ export const useDollarValue = (): TDolarValue => {
     queryKey: ["dolar"],
     queryFn: async () => {
       const response = await fetch(
-        "https://api.exchangerate-api.com/v4/latest/USD"
+        "https://economia.awesomeapi.com.br/json/last/USD-BRL"
       );
-      const data = await response.json();
+      const {USDBRL} = await response.json();
       return {
-        value: data.rates.BRL,
-        lastUpdated: new Date(),
+        value: Number(Number(USDBRL?.bid).toFixed(2)),
+        lastUpdated: USDBRL?.create_date ? new Date(USDBRL.create_date) : new Date()
       };
     },
   });
